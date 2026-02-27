@@ -34,18 +34,14 @@ Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId){
 Route::get('/hello', [WelcomeController::class,'hello']);
 
 
-// Route::get('/', [PageController::class, 'index']);
-
-// Route::get('/about', [PageController::class, 'about']);
-
-
-// Route::get('/articles/{id}', [PageController::class, 'articles']);
+Route::get('/', [PageController::class, 'index']);
+Route::get('/about', [PageController::class, 'about']);
+Route::get('/articles/{id}', [PageController::class, 'articles']);
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 
-// Route menggunakan Single Action Controller
 Route::get('/', HomeController::class);
 Route::get('/about', AboutController::class);
 Route::get('/articles/{id}', ArticleController::class);
@@ -58,3 +54,8 @@ Route::resource('photos', PhotoController::class)->only([
 Route::resource('photos', PhotoController::class)->except([
  'create', 'store', 'update', 'destroy'
 ]);
+
+// Route::get('/greeting', function () {
+// return view('blog.hello', ['name' => 'Abeng']);
+// });
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
